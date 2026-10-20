@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="IdermaIncidencias.Pages.ReportePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Padding="24,12" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Spacing="4">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Reportar incidencia" />
+            <TextBlock
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Text="Equipos averiados, falta de insumos o de recursos. Logística acepta o deniega el reporte."
+                TextWrapping="Wrap" />
+        </StackPanel>
+
+        <InfoBar
+            x:Name="Aviso"
+            Grid.Row="1"
+            IsClosable="True"
+            IsOpen="False" />
+
+        <ScrollViewer Grid.Row="2">
+            <Border HorizontalAlignment="Stretch" Style="{StaticResource CardBorderStyle}">
+                <Grid ColumnSpacing="28" RowSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox
+                        x:Name="CajaSolicitante"
+                        Header="Quién reporta"
+                        IsReadOnly="True"
+                        PlaceholderText="Inicie sesión en el launcher" />
+                    <ComboBox
+                        x:Name="ComboArea"
+                        Grid.Column="1"
+                        Header="Área o sede"
+                        HorizontalAlignment="Stretch"
+                        PlaceholderText="Elija el área" />
+
+                    <ComboBox
+                        x:Name="ComboTipo"
+                        Grid.Row="1"
+                        Header="Tipo de reporte"
+                        HorizontalAlignment="Stretch"
+                        SelectionChanged="ComboTipo_SelectionChanged" />
+                    <TextBox
+                        x:Name="CajaNombre"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Header="Equipo, insumo o recurso"
+                        PlaceholderText="Qué falta o qué se malogró" />
+
+                    <Grid Grid.Row="2" ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="160" />
+                        </Grid.ColumnDefinitions>
+                        <NumberBox
+                            x:Name="CajaCantidad"
+                            HorizontalAlignment="Stretch"
+                            Header="Cantidad"
+                            Minimum="1"
+                            SmallChange="1"
+                            SpinButtonPlacementMode="Inline"
+                            Value="1" />
+                        <TextBox
+                            x:Name="CajaUnidad"
+                            Grid.Column="1"
+                            Header="Unidad"
+                            Text="und" />
+                    </Grid>
+                    <NumberBox
+                        x:Name="CajaPrecio"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        Header="Precio de reposición (con IGV)"
+                        Minimum="0"
+                        SmallChange="10"
+                        SpinButtonPlacementMode="Inline" />
+
+                    <TextBox
+                        x:Name="CajaEnlace"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        Header="Enlace del producto"
+                        PlaceholderText="https://…" />
+                    <TextBox
+                        x:Name="CajaDetalle"
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        AcceptsReturn="True"
+                        Header="Detalle"
+                        Height="120"
+                        PlaceholderText="Qué ocurrió y para qué se necesita"
+                        TextWrapping="Wrap" />
+
+                    <Grid Grid.Row="5" Grid.ColumnSpan="2" ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox
+                            x:Name="CajaUrgente"
+                            VerticalAlignment="Center"
+                            Content="Es urgente" />
+                        <Button
+                            x:Name="BotonEnviar"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            MinWidth="180"
+                            Click="Enviar_Click"
+                            Content="Enviar reporte"
+                            Style="{StaticResource AccentButtonStyle}" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>
